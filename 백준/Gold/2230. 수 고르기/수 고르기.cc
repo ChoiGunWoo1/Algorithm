@@ -30,14 +30,12 @@ int main(void)
         while(left + 1 < right) {
             int mid = (left + right) / 2;
             if(A[i] + m <= A[mid]) {
+                answer = min(answer, A[mid] - A[i]);
                 right = mid;
             }
             else {
                 left = mid;
             }
-        }
-        if(A[right] >= A[i] + m) {
-            answer = min(answer, A[right] - A[i]);
         }
     }
     cout << answer;
