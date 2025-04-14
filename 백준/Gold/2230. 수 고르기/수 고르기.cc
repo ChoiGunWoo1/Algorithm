@@ -22,22 +22,19 @@ int main(void)
 
     sort(A, A+n);
 
+    int ed = 0;
     int answer = INT_MAX;
 
-    for(int i = 0; i < n-1; i++){ // 차이가 m이상인 값중 최솟값을 이분탐색
-        int left = i;
-        int right = n; 
-        while(left + 1 < right) {
-            int mid = (left + right) / 2;
-            if(A[i] + m <= A[mid]) {
-                answer = min(answer, A[mid] - A[i]);
-                right = mid;
-            }
-            else {
-                left = mid;
-            }
+    for(int st = 0; st < n; st++) { // 투 포인터 방식
+        while(ed < n && A[ed] - A[st] < m) {
+            ed++;
         }
+        if(ed == n) {
+            break;
+        }
+        answer = min(answer, A[ed] - A[st]);
     }
+    
     cout << answer;
     
     
